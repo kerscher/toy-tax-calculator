@@ -13,7 +13,7 @@ import (
 // Amount is a value in a given currency
 type Amount struct {
 	Value    decimal.Decimal
-	Currency accounting.Accounting
+	Currency *accounting.Accounting
 }
 
 // Allowance is the maximum tax-exempt income a taxpayer has
