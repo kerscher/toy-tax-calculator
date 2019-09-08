@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 
+	taxInternal "github.com/kerscher/toy-tax-calculator/internal/app"
 	"github.com/spf13/cobra"
 )
 
@@ -28,3 +29,7 @@ Higher rate: <unimplemented>
 Total tax due: <unimplemented>
 `, cfg.taxYear, cfg.grossIncome)
 }
+
+var (
+	Rates = taxInternal.Rates
+)
