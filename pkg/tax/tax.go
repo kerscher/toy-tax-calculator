@@ -71,3 +71,7 @@ type PayerYear struct {
 	Allowance  Allowance
 	PayerBands []PayerBand
 }
+
+func NewPayerYear(y Year, g GrossIncome) (PayerYear, error) {
+	return PayerYear{}, fmt.Errorf("Calculating taxes is currently unimplemented!")
+}
