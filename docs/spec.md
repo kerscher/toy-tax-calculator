@@ -37,3 +37,18 @@ Higher Rate: £72.00 @ 40% = £28.80
 
 Total Tax Due: £6,518.69
 ```
+
+Test conditions
+===============
+
+The following assertions must all hold true at all times. Refer to codebase for actual definitions:
+
+* Income
+  * _must not_ be negative
+  * _must_ lead to no taxes if under allowance for the year
+  * _may_ fail if above documented £2^31 limit
+* Year of choice _must be_ in list of tax bands per year
+* Rates for tax bands
+  * _must_ be between 0% and 100%
+  * _should_ have increasing tax rates
+* Currencies must be homogenous for a given taxpayer
