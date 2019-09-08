@@ -65,7 +65,9 @@ func (g GrossIncome) Taxable(a Allowance) (TaxableIncome, error) {
 	}, nil
 }
 
+// PayerYear is a Year with a sequence of PayerBand instead of Band
 type PayerYear struct {
-	Year
+	Year       int
+	Allowance  Allowance
 	PayerBands []PayerBand
 }
