@@ -10,7 +10,7 @@ import (
 // Cfg is a struct with configuration flags and arguments
 type Cfg struct {
 	taxYear int
-	grossIncome float64
+	grossIncome string
 }
 
 var (
@@ -34,17 +34,15 @@ func Execute() {
 
 func init() {
 	rootCmd.PersistentFlags().IntVar(&cfg.taxYear, "tax-year", 2019, "Year where taxes apply")
-	rootCmd.PersistentFlags().Float64Var(&cfg.grossIncome, "gross-income", 0, "Total amount of gross income")
+	rootCmd.PersistentFlags().StringVar(&cfg.grossIncome, "gross-income", "0", "Total amount of gross income")
 }
 
 func processArgs(cmd *cobra.Command, args []string) (*Cfg, error) {
 	y, err := cmd.Flags().GetInt("tax-year")
-	if err != nil {
-		return &Cfg{}, err
-	}
-	g, err := cmd.Flags().GetFloat64("gross-income")
-	if err != nil {
-		return &Cfg{}, err
-	}
+	if err != nil { return &Cfg{}, err }
+
+	g, err := cmd.Flags().GetString("gross-income")
+	if err != nil { return &Cfg{}, err }
+
 	return &Cfg{taxYear: y, grossIncome: g}, nil
 }
