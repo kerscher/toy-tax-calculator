@@ -65,13 +65,19 @@ func (g GrossIncome) Taxable(a Allowance) (TaxableIncome, error) {
 	}, nil
 }
 
-// PayerYear is a Year with a sequence of PayerBand instead of Band
+// PayerYear is a Year with a sequence of PayerBand instead of Band and payer income information
 type PayerYear struct {
-	Year       int
-	Allowance  Allowance
-	PayerBands []PayerBand
+	Year          int
+	Allowance     Allowance
+	GrossIncome   GrossIncome
+	TaxableIncome TaxableIncome
+	PayerBands    []PayerBand
 }
 
 func NewPayerYear(y Year, g GrossIncome) (PayerYear, error) {
 	return PayerYear{}, fmt.Errorf("Calculating taxes is currently unimplemented!")
+}
+
+func (p *PayerYear) String() string {
+	return "<unimplemented>"
 }
