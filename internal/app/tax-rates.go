@@ -81,6 +81,55 @@ var Rates = map[int]t.Year{
 					Currency: DefaultCurrency,
 				},
 			},
+			t.Band{
+				Description: "Higher rate",
+				Rate:        t.Rate(decimal.NewFromFloat(0.40)),
+				Capacity:    MaxIncome,
+			},
+		},
+	},
+	2017: t.Year{
+		Year: 2017,
+		Allowance: t.Allowance{
+			Value:    decimal.NewFromFloat(11_000),
+			Currency: DefaultCurrency,
+		},
+		Bands: []t.Band{
+			t.Band{
+				Description: "Basic rate",
+				Rate:        t.Rate(decimal.NewFromFloat(0.20)),
+				Capacity: t.Amount{
+					Value:    decimal.NewFromFloat(32_000),
+					Currency: DefaultCurrency,
+				},
+			},
+			t.Band{
+				Description: "Higher rate",
+				Rate:        t.Rate(decimal.NewFromFloat(0.40)),
+				Capacity:    MaxIncome,
+			},
+		},
+	},
+	2016: t.Year{
+		Year: 2017,
+		Allowance: t.Allowance{
+			Value:    decimal.NewFromFloat(10_600),
+			Currency: DefaultCurrency,
+		},
+		Bands: []t.Band{
+			t.Band{
+				Description: "Basic rate",
+				Rate:        t.Rate(decimal.NewFromFloat(0.20)),
+				Capacity: t.Amount{
+					Value:    decimal.NewFromFloat(31_785),
+					Currency: DefaultCurrency,
+				},
+			},
+			t.Band{
+				Description: "Higher rate",
+				Rate:        t.Rate(decimal.NewFromFloat(0.40)),
+				Capacity:    MaxIncome,
+			},
 		},
 	},
 }
