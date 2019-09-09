@@ -39,3 +39,5 @@ Optionally if using Podman or Docker:
 ```
 podman build -t toy-tax-calculator:develop .
 ```
+
+Either build runs all tests before generating binary artifacts.
