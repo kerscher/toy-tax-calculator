@@ -1,6 +1,9 @@
-// Package tax provides currency-independent progressive tax functionality
+// Package tax provides currency-independent progressive tax
+// functionality
 //
-// Internally everything is kept as decimal.Decimal, but users are required to also choose a currency when initialising and using values.
+// Internally everything is kept as decimal.Decimal, but users are
+// required to also choose a currency when initialising and using
+// values.
 package tax
 
 import (
@@ -24,9 +27,13 @@ func (a Amount) String() string {
 // Allowance is the maximum tax-exempt income a taxpayer has
 type Allowance Amount
 
-// TaxBand consists of a description, a rate and a capacity. The actual band is only meaningful in the context of other TaxBands, as a sequence of them naturally leads to a minimum and a maximum for a particular band depending on its capacity.
+// TaxBand consists of a description, a rate and a capacity. The
+// actual band is only meaningful in the context of other TaxBands, as
+// a sequence of them naturally leads to a minimum and a maximum for a
+// particular band depending on its capacity.
 //
-// This particular design choice ensures bands are never overlapping and ensures correctness by construction.
+// This particular design choice ensures bands are never overlapping
+// and ensures correctness by construction.
 type Band struct {
 	Description string
 	Rate        Rate
@@ -39,7 +46,11 @@ type PayerBand struct {
 	Due Amount
 }
 
-// Converts a Band into a PayerBand. This is unexported as the Amount passed to it must be enforced elsewhere, as nothing guarantees a user will keep invariants related to GrossIncome. The Amount returned is the residual Amount if it exceeds Capacity for that band.
+// Converts a Band into a PayerBand. This is unexported as the Amount
+// passed to it must be enforced elsewhere, as nothing guarantees a
+// user will keep invariants related to GrossIncome. The Amount
+// returned is the residual Amount if it exceeds Capacity for that
+// band.
 func (b *Band) due(a Amount) (PayerBand, Amount, error) {
 	if b.Capacity.Currency != a.Currency {
 		return PayerBand{}, Amount{}, fmt.Errorf("Cannot calculate taxes due. Currencies for Band and income Amount are not identical.")
@@ -79,10 +90,12 @@ type Year struct {
 	Bands     []Band
 }
 
-// GrossIncome is the total income of a taxpayer before any taxes are calculated
+// GrossIncome is the total income of a taxpayer before any taxes are
+// calculated
 type GrossIncome Amount
 
-// TaxableIncome is the part of a taxpayer income due taxes in a given year
+// TaxableIncome is the part of a taxpayer income due taxes in a given
+// year
 type TaxableIncome Amount
 
 // Taxable converts GrossIncomes into TaxableIncomes
@@ -105,7 +118,8 @@ func (g *GrossIncome) Taxable(a Allowance) (TaxableIncome, error) {
 
 //
 
-// PayerYear is a Year with a sequence of PayerBand instead of Band and payer income information
+// PayerYear is a Year with a sequence of PayerBand instead of Band
+// and payer income information
 type PayerYear struct {
 	Year          int
 	Allowance     Allowance
@@ -115,7 +129,8 @@ type PayerYear struct {
 	PayerBands    []PayerBand
 }
 
-// Calculates taxes of a taxpayer given their gross income and a tax Year
+// Calculates taxes of a taxpayer given their gross income and a tax
+// Year
 func NewPayerYear(y Year, g GrossIncome) (PayerYear, error) {
 	ti, err := g.Taxable(y.Allowance)
 	if err != nil {
