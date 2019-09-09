@@ -9,7 +9,10 @@ import (
 var (
 	DefaultCurrency = accounting.DefaultAccounting("£", 2)
 
-	// MaxIncome is used as a (disregarded) upper bound on last tax bands. The underlying calculation ignores it, but Go has no native concept of nullable types and we give this value so the type checks.
+	// MaxIncome is used as a (disregarded) upper bound on last tax
+	// bands. The underlying calculation ignores it, but Go has no
+	// native concept of nullable types and we give this value so the
+	// type checks.
 	MaxIncome = t.Amount{
 		Value:    decimal.RequireFromString("10000000000000000"),
 		Currency: DefaultCurrency,
@@ -60,6 +63,23 @@ var Rates = map[int]t.Year{
 				Description: "Top rate",
 				Rate:        t.Rate(decimal.NewFromFloat(0.46)),
 				Capacity:    MaxIncome,
+			},
+		},
+	},
+	2018: t.Year{
+		Year: 2018,
+		Allowance: t.Allowance{
+			Value:    decimal.NewFromFloat(11_500),
+			Currency: DefaultCurrency,
+		},
+		Bands: []t.Band{
+			t.Band{
+				Description: "Basic rate",
+				Rate:        t.Rate(decimal.NewFromFloat(0.20)),
+				Capacity: t.Amount{
+					Value:    decimal.NewFromFloat(31_500),
+					Currency: DefaultCurrency,
+				},
 			},
 		},
 	},

@@ -98,7 +98,12 @@ func TestTaxMatchesExample(t *testing.T) {
 			},
 		}
 		py, _ := tax.NewPayerYear(inTaxYear, inGrossIncome)
-		// The condition below should use reflect.DeepEqual, but despite having identical values DeepEqual is unable to maintain equality. This is likely due to limitations with how it handles pointer dereferencing for values inside decimal.Decimal. To circumvent this we use the String method for both.
+		// The condition below should use reflect.DeepEqual, but
+		// despite having identical values DeepEqual is unable to
+		// maintain equality. This is likely due to limitations with
+		// how it handles pointer dereferencing for values inside
+		// decimal.Decimal. To circumvent this we use the String
+		// method for both.
 		if py.String() != want.String() {
 			t.Errorf("Calculated tax does not match reference.\n\nReference:\n----------\n%v\n\nCalculated:\n-----------\n %v", py, want)
 			return
