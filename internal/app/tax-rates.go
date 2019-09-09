@@ -16,11 +16,11 @@ var (
 	}
 )
 
-var Rates = map[string]t.Year{
-	"2019": t.Year{
+var Rates = map[int]t.Year{
+	2019: t.Year{
 		Year: 2019,
 		Allowance: t.Allowance{
-			Value:    decimal.NewFromFloat(0),
+			Value:    decimal.NewFromFloat(11850),
 			Currency: DefaultCurrency,
 		},
 		Bands: []t.Band{

@@ -9,7 +9,7 @@ import (
 
 // Cfg is a struct with configuration flags and arguments
 type Cfg struct {
-	taxYear int
+	taxYear     int
 	grossIncome string
 }
 
@@ -39,10 +39,14 @@ func init() {
 
 func processArgs(cmd *cobra.Command, args []string) (*Cfg, error) {
 	y, err := cmd.Flags().GetInt("tax-year")
-	if err != nil { return &Cfg{}, err }
+	if err != nil {
+		return &Cfg{}, err
+	}
 
 	g, err := cmd.Flags().GetString("gross-income")
-	if err != nil { return &Cfg{}, err }
+	if err != nil {
+		return &Cfg{}, err
+	}
 
 	return &Cfg{taxYear: y, grossIncome: g}, nil
 }
