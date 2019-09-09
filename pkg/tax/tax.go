@@ -72,7 +72,7 @@ func (pb PayerBand) String() string {
 	return fmt.Sprintf("%v: %v", pb.Band.Description, Amount(pb.Due).String())
 }
 
-// A Year has an allowance value and an ordered sequence of TaxBand consisting of the progressive taxation bands
+// A Year has an allowance value and an ordered sequence of TaxBand
 type Year struct {
 	Year      int
 	Allowance Allowance
