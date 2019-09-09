@@ -41,3 +41,9 @@ podman build -t toy-tax-calculator:develop .
 ```
 
 Either build runs all tests before generating binary artifacts.
+
+TODOs
+-----
+
+* CI/CD public pipelines
+* Release binaries
